@@ -1,0 +1,135 @@
+<div class="d-flex justify-content-end mb-3">
+  <a
+    href="#"
+    class="btn bg-primary btn-sm background text-white"
+    data-bs-toggle="modal"
+    data-bs-target="#myModal"
+    (click)="isEdit = false"
+  >
+    <i class="fa fa-plus"></i> Add Event
+  </a>
+</div>
+<table class="table">
+  <thead class="table-dark">
+    <tr>
+      <th class="background">Sr.No.</th>
+      <th class="background">Event Title</th>
+      <th class="background">Event Date</th>
+      <th class="background">Event Time</th>
+      <th class="background">Location</th>
+      <th class="background">Published Date</th>
+      <th class="text-end background">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    @for (event of events; track $index) {
+      <tr>
+      <td>{{$index + 1}}</td>
+      <td>{{event.title}}</td>
+      <td>{{event.date | date}}</td>
+      <td>{{ event.createdAt | date:'hh:mm a' }}</td>
+      <td>{{event.location}}</td>
+      <td>{{ event.updatedAt | date:'MMM dd, yyyy' }}</td>
+      <td class="text-end">
+        <i
+          (click)="edit(event)"
+          class="fa fa-pencil me-4"
+          data-bs-toggle="modal"
+          data-bs-target="#myModal"
+        ></i>
+        <i class="fa fa-trash text-danger" (click)="deleteEvent(event)"></i>
+      </td>
+    </tr>
+    }
+  </tbody>
+</table>
+
+<!-- The Modal -->
+<div class="modal fade" id="myModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title text text-center">Add/Edit Event</h4>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+        ></button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        <form [formGroup]="selectedEvent">
+          <div class="row">
+            <!-- Part 1: Event Details -->
+            <div class="col-md-6">
+              <div class="mb-3">
+                <label for="eventTitle" class="form-label">Event Title</label>
+                <input
+                  formControlName="title"
+                  type="text"
+                  class="form-control"
+                  id="eventTitle"
+                  placeholder="Enter event title"
+                />
+              </div>
+              <div class="mb-3">
+                <label for="eventDate" class="form-label">Event Date</label>
+                <input formControlName="date" type="date" class="form-control" id="eventDate" />
+              </div>
+              <div class="mb-3">
+                <label for="eventTime" class="form-label">Event Time</label>
+                <input formControlName="time" type="time" class="form-control" id="eventTime" />
+              </div>
+              <div class="mb-3">
+                <label for="location" class="form-label">Location</label>
+                <input
+                  formControlName="location"
+                  type="text"
+                  class="form-control"
+                  id="location"
+                  placeholder="Enter event location"
+                />
+              </div>
+            </div>
+            <!-- Part 2: Event Description -->
+            <div class="col-md-6">
+              <div class="mb-3 h-100 d-flex flex-column">
+                <label for="eventDescription" class="form-label"
+                  >Event Description</label
+                >
+                <textarea
+                  formControlName="description"
+                  class="form-control flex-grow-1"
+                  id="eventDescription"
+                  rows="8"
+                  placeholder="Enter event description"
+                ></textarea>
+              </div>
+            </div>
+          </div>
+        </form>
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button
+            (click)="onSubmit()"
+            type="button"
+            class="btn btn-danger background btn-sm"
+            data-bs-dismiss="modal"
+            [disabled]="selectedEvent.invalid"
+          >
+            Submit
+          </button>
+          <button
+            type="button"
+            class="btn btn-danger btn-sm"
+            data-bs-dismiss="modal"
+          >
+            Close
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,50 @@
+<div class="container">
+  <div class="row justify-content-center mt-5 mb-5">
+    <div class="col-sm-4"></div>
+    <div class="col-sm-4 border border-2 rounded p-4 bg-light">
+      <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+        <!-- Email input -->
+        <div data-mdb-input-init class="form-outline mb-4">
+          <label class="form-label" for="form2Example1">Email addres<span class="text-danger">*</span></label>
+          <input
+          formControlName="email"
+            type="email"
+            id="form2Example1"
+            class="form-control"
+            placeholder="Enter your email"
+          />
+          <div class="text-danger" *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched">
+            Email is Required
+          </div>
+        </div>
+
+        <!-- Password input -->
+        <div data-mdb-input-init class="form-outline mb-4">
+          <label class="form-label" for="form2Example2">Password<span class="text-danger">*</span></label>
+          <input
+            formControlName="password"
+            type="password"
+            id="form2Example2"
+            class="form-control"
+            placeholder="Enter your password"
+          />
+           <div class="text-danger" *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
+            Password is Required
+          </div>
+        </div>
+
+        <!-- Submit button -->
+        <button
+          type="submit"
+          [disabled]="loginForm.invalid"
+          data-mdb-button-init
+          data-mdb-ripple-init
+          class="btn btn-primary btn-block background mb-4"
+        >
+          Sign in
+        </button>
+      </form>
+    </div>
+    <div class="col-sm-4"></div>
+  </div>
+</div>

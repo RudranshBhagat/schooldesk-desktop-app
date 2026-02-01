@@ -1,0 +1,106 @@
+<div class="container-fluid my-5">
+  <div class="row justify-content-center">
+    <div class="col-md-12 col-lg-10">
+      <div class="card shadow rounded-4">
+        <div
+          class="card-header background text-white text-center rounded-top-4"
+        >
+          <h4 class="mb-0"><i class="fa fa-envelope me-2"></i>Contact Us</h4>
+        </div>
+        <div class="card-body p-4">
+          <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+            <div class="mb-3">
+              <label for="name" class="form-label"
+                ><i class="fa fa-user me-1"></i>Name<span class="text-danger">*</span></label
+              >
+              <input
+                type="text"
+                formControlName="name"
+                class="form-control"
+                id="name"
+                name="name"
+                placeholder="Your Name"
+                required
+              />
+              <div class="text-danger" *ngIf="contactForm.get('name')?.invalid && contactForm.get('name')?.touched">Name is Required
+              </div>
+            </div>
+            <div class="mb-3">
+              <label for="email" class="form-label"
+                ><i class="fa fa-envelope me-1"></i>Email<span class="text-danger">*</span></label
+              >
+              <input
+                formControlName="email"
+                type="email"
+                class="form-control"
+                id="email"
+                name="email"
+                placeholder="you@example.com"
+                required
+              />
+              <div class="text-danger" *ngIf="contactForm.get('email')?.invalid && contactForm.get('email')?.touched">Email is Required
+              </div>
+            </div>
+            <div class="mb-3">
+              <label for="phone" class="form-label"
+                ><i class="fa fa-phone me-1"></i>Phone<span class="text-danger">*</span></label
+              >
+              <input
+                formControlName="phone"
+                type="tel"
+                class="form-control"
+                id="phone"
+                name="phone"
+                placeholder="+91-9876543210"
+                required
+              />
+              <div class="text-danger" *ngIf="contactForm.get('phone')?.invalid && contactForm.get('phone')?.touched">Name is Required
+              </div>
+            </div>
+            <div class="mb-3">
+              <label for="subject" class="form-label"
+                ><i class="fa fa-book me-1"></i>Subject<span class="text-danger">*</span></label
+              >
+              <input
+                formControlName="subject"
+                type="text"
+                class="form-control"
+                id="subject"
+                name="subject"
+                placeholder="Subject"
+                required
+              />
+              <div class="text-danger" *ngIf="contactForm.get('subject')?.invalid && contactForm.get('subject')?.touched">Name is Required
+              </div>
+            </div>
+            <div class="mb-3">
+              <label for="message" class="form-label"
+                ><i class="fa fa-comment me-1"></i>Message<span class="text-danger">*</span></label
+              >
+              <textarea
+                formControlName="message"
+                class="form-control"
+                id="message"
+                name="message"
+                rows="4"
+                placeholder="Type your message here..."
+                required
+              ></textarea>
+              <div class="text-danger" *ngIf="contactForm.get('message')?.invalid && contactForm.get('message')?.touched">Name is Required
+              </div>
+            </div>
+            <div class="d-grid">
+              <button
+              [disabled]="contactForm.invalid"
+                type="submit"
+                class="btn btn-primary background btn-lg rounded-pill"
+              >
+                <i class="fa fa-paper-plane me-2"></i>Send Message
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

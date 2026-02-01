@@ -1,0 +1,122 @@
+<div class="d-flex justify-content-end mb-3">
+  <a
+    href="#"
+    class="btn bg-primary btn-sm background text-white"
+    data-bs-toggle="modal"
+    data-bs-target="#myModal"
+  >
+    <i class="fa fa-plus"></i> Add Notice
+  </a>
+</div>
+<table class="table">
+  <thead class="table-dark">
+    <tr>
+      <th class="background">Notice Title</th>
+      <th class="background">Category</th>
+      <th class="background">Published Date</th>
+      <th class="text-end background">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    @for (notice of notices; track $index) {
+      <tr>
+      <td>{{notice.title}}</td>
+      <td>{{notice.category}}</td>
+     <td>{{ notice.createdAt | date: 'MMM d, yyyy' }}</td>
+
+
+      <td class="text-end">
+        <i
+          (click)="edit(notice)"
+          class="fa fa-pencil me-4"
+          data-bs-toggle="modal"
+          data-bs-target="#myModal"
+        ></i>
+        <i class="fa fa-trash text-danger" (click)="delete(notice)"></i>
+      </td>
+    </tr>  
+    }
+  </tbody>
+</table>
+
+<!-- The Modal -->
+<div class="modal fade" id="myModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title text text-center">Add/Edit Notice</h4>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+        ></button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        <form [formGroup]="selectedNotices">
+          <div class="row">
+            <!-- Part 1: Event Details -->
+            <div class="col-md-6">
+              <div class="mb-3">
+                <label for="eventTitle" class="form-label">Notice Title</label>
+                <input
+                  formControlName="title"
+                  type="text"
+                  class="form-control"
+                  id="eventTitle"
+                  placeholder="Enter notice title"
+                />
+              </div>
+              <div class="mb-3">
+                <label for="category" class="form-label">Category</label>
+                <input
+                  formControlName="category"
+                  type="text"
+                  class="form-control"
+                  id="category"
+                  placeholder="Enter notice category"
+                />
+              </div>
+            </div>
+            <!-- Part 2: Event Description -->
+            <div class="col-md-6">
+              <div class="mb-3 h-100 d-flex flex-column">
+                <label for="noticeDescription" class="form-label"
+                  >Notice Description</label
+                >
+                <textarea
+                  formControlName="description"
+                  class="form-control flex-grow-1"
+                  id="noticeDescription"
+                  rows="8"
+                  placeholder="Enter notice description"
+                ></textarea>
+              </div>
+            </div>
+          </div>
+        </form>
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button
+            (click)="onSubmit()"
+            type="button"
+            class="btn btn-danger background btn-sm"
+            data-bs-dismiss="modal"
+            [disabled]="selectedNotices.invalid"
+          >
+            Submit
+          </button>
+          <button
+            type="button"
+            class="btn btn-danger btn-sm"
+            data-bs-dismiss="modal"
+          >
+            Close
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

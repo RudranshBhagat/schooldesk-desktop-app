@@ -1,0 +1,149 @@
+<div class="d-flex justify-content-end mb-3">
+  <a
+    href="#"
+    class="btn bg-primary btn-sm background text-white"
+    data-bs-toggle="modal"
+    data-bs-target="#myModal"
+    (click)="isEdit = false; selectedTeachers.reset()"
+  >
+    <i class="fa fa-plus"></i> Add Teacher
+  </a>
+</div>
+<table class="table">
+  <thead class="table-dark">
+    <tr>
+      <th class="background">Sr.No</th>
+      <th class="background">Teacher Name</th>
+      <th class="background">Subject</th>
+      <th class="background">Designation</th>
+      <th class="background">Profile Picture</th>
+      <th class="text-end background">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+   @for (teacher of teachers; track $index) {
+     <tr>
+      <td>{{$index + 1}}</td>
+      <td>{{teacher.name}}</td>
+      <td>{{teacher.subject}}</td>
+      <td>{{teacher.designation}}</td>
+      <td>
+  <img src="{{teacher.image}}" alt="{{teacher.name}}" width="50" height="50" style="object-fit: cover;" />
+</td>
+
+
+      <td class="text-end">
+        <i
+          (click)="edit(teacher)"
+          class="fa fa-pencil me-4"
+          data-bs-toggle="modal"
+          data-bs-target="#myModal"
+        ></i>
+        <i class="fa fa-trash text-danger" (click)="delete(teacher)"></i>
+      </td>
+    </tr>
+   }
+  </tbody>
+</table>
+
+<!-- The Modal -->
+<div class="modal fade" id="myModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title text text-center">Add/Edit Teacher</h4>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+        ></button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        <form [formGroup]="selectedTeachers">
+          <div class="row">
+            <!-- Part 1: Event Details -->
+            <div class="col-md-6">
+              <div class="mb-3">
+                <label for="teacherName" class="form-label">Teacher Name</label>
+                <input
+                  formControlName="name"
+                  type="text"
+                  class="form-control"
+                  id="teacherName"
+                  placeholder="Enter teacher name"
+                />
+              </div>
+              <div class="mb-3">
+                <label for="subject" class="form-label">Subject</label>
+                <input
+                  formControlName="subject"
+                  type="text"
+                  class="form-control"
+                  id="subject"
+                  placeholder="Enter subject"
+                />
+              </div>
+              <div class="mb-3">
+                <label for="designation" class="form-label">Designation</label>
+                <input
+                  formControlName="designation"
+                  type="text"
+                  class="form-control"
+                  id="designation"
+                  placeholder="Enter designation"
+                />
+              </div>
+              <div class="mb-3">
+                <label for="profilePicture" class="form-label"
+                  >Profile Picture</label
+                >
+                <input
+                  formControlName="image"
+                  type="text"
+                  class="form-control"
+                  id="profilePicture"
+                  placeholder="Enter profile picture URL"
+                />
+              </div>
+            </div>
+            <!-- Part 2: Event Description -->
+            <div class="col-md-6">
+              <div class="mb-3 h-100 d-flex flex-column">
+                <label for="bio" class="form-label">Bio</label>
+                <textarea
+                  formControlName="bio"
+                  class="form-control flex-grow-1"
+                  id="bio"
+                  rows="8"
+                  placeholder="Enter bio"
+                ></textarea>
+              </div>
+            </div>
+          </div>
+        </form>
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button
+            (click)="onSubmit()"
+            [disabled]="selectedTeachers.invalid"
+            type="button"
+            class="btn btn-danger background btn-sm"
+            data-bs-dismiss="modal"
+          >
+            Submit
+          </button>
+          <button
+            type="button"
+            class="btn btn-danger btn-sm"
+            data-bs-dismiss="modal"
+          >
+            Close
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

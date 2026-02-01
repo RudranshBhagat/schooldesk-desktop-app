@@ -1,0 +1,91 @@
+<table class="table">
+  <thead class="table-dark">
+    <tr>
+      <th class="background">Sr. No.</th>
+      <th class="background">Name</th>
+      <th class="background">Email</th>
+      <th class="background">Phone</th>
+      <th class="background">Subject</th>
+      <th class="background">Message</th>
+      <th class="text-end background">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    @for (contact of contacts; track $index) {
+      <tr>
+      <td>{{$index + 1}}</td>
+      <td>{{contact.name}}</td>
+      <td>{{contact.email}}</td>
+      <td>{{contact.phone}}</td>
+      <td>{{contact.subject}}</td>
+      <td>{{contact.message | slice: 0:30 }}{{contact.message.length > 30? '....': ''}}</td>
+      <td class="text-end">
+        <!-- <i class="fa fa-pencil me-4"></i> -->
+        <i
+          class="fa fa-eye me-4"
+          data-bs-toggle="modal"
+          data-bs-target="#myModal" (click)="viewContact(contact)"
+        ></i>
+        <i class="fa fa-trash text-danger" (click)="deleteContact(contact)"></i>
+      </td>
+    </tr>
+    }
+  </tbody>
+</table>
+
+<!-- The Modal -->
+<div class="modal fade" id="myModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title text text-center">Enquiry Details</h4>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+        ></button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        <div class="mb-1">
+          <label for="name" class="form-label"
+            ><i class="fa fa-user me-1"></i>Name : {{selectedContact.name}}
+          </label>
+        </div>
+        <div class="mb-1">
+          <label for="email" class="form-label"
+            ><i class="fa fa-envelope me-1"></i>Email :{{selectedContact.name}}
+          </label>
+        </div>
+        <div class="mb-1">
+          <label for="phone" class="form-label"
+            ><i class="fa fa-phone me-1"></i>Phone : {{selectedContact.phone}}
+          </label>
+        </div>
+        <div class="mb-1">
+          <label for="subject" class="form-label"
+            ><i class="fa fa-tag me-1"></i>Subject : {{selectedContact.subject}}
+          </label>
+        </div>
+        <div class="mb-1">
+          <label for="message" class="form-label"
+            ><i class="fa fa-comment me-1"></i>Message : {{selectedContact.message}}
+          </label>
+        </div>
+
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-danger btn-sm"
+            data-bs-dismiss="modal"
+          >
+            Close
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

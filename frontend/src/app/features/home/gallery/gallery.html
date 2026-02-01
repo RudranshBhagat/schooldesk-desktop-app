@@ -1,0 +1,30 @@
+<div class="container text py-5">
+  <h2 class="fs-2 text-center text-decoration-underline mb-4">Gallery</h2>
+  <p class="fs-5 text-center mb-4">
+    Explore the vibrant moments captured at God Grace School, showcasing our
+    students' achievements, events, and the spirit of our community.
+  </p>
+  <div class="row g-4">
+    <!-- Gallery Item 1 -->
+     @for (gallery of galleries; track $index) {
+    <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+      <a style="text-decoration: none; color: inherit;" [routerLink]="`/gallery`">
+      <div class="card shadow-lg h-100 border-0">
+        <div class="ratio ratio-4x3">
+          <img
+           [src]="gallery.imagesUrl?.trim()?.split(',')[0]"
+            class="img-fluid rounded-top object-fit-cover"
+            alt="Annual Day"
+          />
+        </div>
+        <div class="card-body text-center">
+          <h6 class="card-title mb-1">{{gallery.title}}</h6>
+          <p class="card-text small text-muted">{{gallery.date | date}}</p>
+        </div>
+      </div>
+      </a>
+    </div>
+  }
+   
+  </div>
+</div>

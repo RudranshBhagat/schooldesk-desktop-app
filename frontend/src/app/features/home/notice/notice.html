@@ -1,0 +1,17 @@
+<div class="background py-1">
+  <div class="row">
+    <div class="col-sm-1 bg-danger text-end">Notices: -</div>
+    <div class="col-sm-11">
+      <marquee
+        behavior="scroll"
+        direction="left"
+        scrollamount="15"
+        class="notice"
+        onmouseover="this.stop();"
+        onmouseout="this.start();"
+      >
+       <a style="text-decoration: none; color: inherit;" [routerLink]="`/notice`">{{notice}}</a>
+      </marquee>
+    </div>
+  </div>
+</div>

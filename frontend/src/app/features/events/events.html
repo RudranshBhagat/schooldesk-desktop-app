@@ -1,0 +1,177 @@
+<!-- Bootstrap 5 Notices List with Modal -->
+
+<div class="container my-5">
+  <h2 class="mb-4 text text-center text-decoration-underline fs-1">
+    Upcoming Events
+  </h2>
+  <div class="row">
+    @for (event of events; track $index) {
+    <div class="col-sm-4">
+      <div class="card border background mb-4">
+        <div class="card-body d-flex align-items-center">
+          <div class="me-3">
+            <i class="fa fa-calendar fs-1 background"></i>
+          </div>
+          <div>
+            <h5 class="card-title mb-1">
+              {{event.events}} <br />
+              <span style="font-size: small">{{event.date | date}}</span>,
+              <span
+                class="text-end"
+                style="
+                  font-family: Cambria, Cochin, Georgia, Times,
+                    'Times New Roman', serif;
+                  font-size: small;
+                "
+              >
+                {{event.location}}
+              </span>
+            </h5>
+            <p class="card-text mb-2">
+              {{event.shortDescription}}
+            </p>
+            <br />
+            <a
+              href="#"
+              class="btn btn-info background btn-sm text-white"
+              data-bs-toggle="modal"
+              data-bs-target="#myModal" (click)="showEvent(event)"
+              >Details</a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+  }
+  </div>
+  <!-- General Instructions Card -->
+  <div class="container mb-5">
+    <div class="card border-primary shadow rounded-4">
+      <div class="card-header background fw-bold rounded-top-4">
+        <i class="fa fa-info-circle me-2"></i>General Instructions for Parents
+        and Students Attending School Events
+      </div>
+      <div class="card-body">
+        <ul class="mb-3">
+          <li>
+            <strong>Arrival Time:</strong> Please reach the school 15–30 minutes
+            before the event start time to avoid last-minute rush.
+          </li>
+          <li>
+            <strong>Dress Code:</strong>
+            <ul>
+              <li>
+                Students must wear proper school uniform unless specified
+                otherwise.
+              </li>
+              <li>
+                Parents should dress decently and modestly, keeping the school
+                environment in mind.
+              </li>
+            </ul>
+          </li>
+          <li>
+            <strong>ID Cards:</strong> Carry your school ID card (for students)
+            or parent pass (if issued) for security reasons.
+          </li>
+          <li>
+            <strong>Seating and Discipline:</strong>
+            <ul>
+              <li>
+                Follow the seating arrangements as guided by the school staff.
+              </li>
+              <li>
+                Maintain silence and decorum during performances and speeches.
+              </li>
+            </ul>
+          </li>
+          <li>
+            <strong>Mobile Phones:</strong>
+            <ul>
+              <li>Keep mobile phones on silent mode.</li>
+              <li>
+                Do not use flash photography or record videos unless permitted.
+              </li>
+            </ul>
+          </li>
+          <li>
+            <strong>Parking:</strong>
+            <ul>
+              <li>Park your vehicles only in the designated parking area.</li>
+              <li>Do not block the school gate or neighboring premises.</li>
+            </ul>
+          </li>
+          <li>
+            <strong>Food and Water:</strong>
+            <ul>
+              <li>Avoid bringing outside food unless instructed.</li>
+              <li>
+                Carry a water bottle if needed. Drinking water will also be
+                available on campus.
+              </li>
+            </ul>
+          </li>
+          <li>
+            <strong>Special Needs:</strong> If your child has any special needs,
+            kindly inform the class teacher in advance.
+          </li>
+          <li>
+            <strong>Health & Safety:</strong> In case of any health issues or
+            emergencies, contact the nearest teacher or school staff
+            immediately.
+          </li>
+          <li>
+            <strong>Exit Instructions:</strong>
+            <ul>
+              <li>Wait for official announcements before exiting the venue.</li>
+              <li>Do not crowd the gates or push while leaving.</li>
+            </ul>
+          </li>
+        </ul>
+        <div class="alert alert-info mb-0">
+          Thank you for your cooperation. We look forward to your enthusiastic
+          participation!
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- The Modal -->
+<div class="modal" id="myModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <!-- Modal Header -->
+      <div class="modal-header background">
+        <h4 class="modal-title">{{selectedEvent.title}}</h4>
+
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+        ></button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        <p style="font-size: 10px" class="text-end text-dark small fw-semibold">
+          <span>Date: {{selectedEvent.date | date}} </span>
+          <br />
+          <span>Location: {{selectedEvent.location}}</span>
+        </p>
+        <p>
+          <strong>Event Details:</strong>
+          <br />
+         {{selectedEvent.description}}
+        </p>
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

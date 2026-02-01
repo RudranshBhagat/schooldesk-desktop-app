@@ -1,0 +1,73 @@
+<!-- Bootstrap 5 Notices List with Modal -->
+
+<div class="container my-5">
+  <h2 class="mb-4 text text-center text-decoration-underline fs-1">
+    School Notices
+  </h2>
+  <p class="mb-4">
+    Stay updated with the latest announcements and events at God Grace School.
+    Here you will find important notices, and other relevant information.
+  </p>
+  <table class="table">
+    <thead>
+      <tr>
+        <th class="background">Sr No.</th>
+        <th class="background">Category</th>
+        <th class="background">Date</th>
+        <th class="background">Notice</th>
+        <th class="background text-end">Read in Detail</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (notice of notices; track $index) {
+        <tr>
+        <td>{{$index + 1}}</td>
+        <td>{{notice.category}}</td>
+        <td>{{notice.date | date}}</td>
+        <td>{{notice.title}}</td>
+        <td class="text-end text-decoration-underline cursor-pointer">
+          <a data-bs-toggle="modal" data-bs-target="#myModal" (click)="showNotice(notice)"> Read More </a>
+        </td>
+      </tr>
+      }
+      
+    </tbody>
+  </table>
+</div>
+
+<!-- The Modal -->
+<div class="modal" id="myModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">{{selectedNotice.title}}</h4>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+        ></button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        <p style="font-size: 10px;" class="text-end text-dark small fw-semibold"
+>
+          <span>Date:{{selectedNotice.date | date}}</span>
+          <span> Event Type:{{selectedNotice.category}}</span>
+        </p>
+        <p><strong>Notice Details</strong>
+          <br>
+          {{selectedNotice.description}}
+        </p>
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

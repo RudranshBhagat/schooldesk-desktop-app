@@ -1,0 +1,115 @@
+<div class="d-flex justify-content-end mb-3">
+  <a
+    href="#"
+    class="btn bg-primary btn-sm background text-white"
+    data-bs-toggle="modal"
+    data-bs-target="#myModal"
+    (click)="isEdit= false; selectedGallery.reset()"
+  >
+    <i class="fa fa-plus"></i> Add Gallery Event
+  </a>
+</div>
+<table class="table">
+  <thead class="table-dark">
+    <tr>
+      <th class="background">Title</th>
+      <th class="background">Event Date</th>
+      <th class="background">Photos</th>
+      <th class="text-end background">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    @for (gallery of galleries; track gallery._id) {
+    <tr>
+      <td>{{gallery.title}}</td>
+      <td>{{gallery.date | date}}</td>
+      <td>
+        @for (image of gallery.images; track $index) {
+        <img [src]="sanitizerUrl(image)" alt="Event 1" width="50px" height="50px" class="img-thumbnail" />
+       }
+      </td>
+      <td class="text-end">
+        <i (click)="edit(gallery)"
+          class="fa fa-pencil me-4"
+          data-bs-toggle="modal"
+          data-bs-target="#myModal"
+        ></i>
+        <i class="fa fa-trash text-danger" (click)="delete(gallery)"></i>
+      </td>
+    </tr>
+    }
+  </tbody>
+</table>
+
+<!-- The Modal -->
+<div class="modal fade" id="myModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title text text-center">Add/Edit Gallery Event</h4>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+        ></button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        <form [formGroup]="selectedGallery">
+          <div class="row">
+            <!-- Part 1: Event Details -->
+            <div class="col-md-12">
+              <div class="mb-3">
+                <label for="eventTitle" class="form-label">Event Title</label>
+                <input
+                  type="text"
+                  formControlName="title"
+                  class="form-control"
+                  id="eventTitle"  
+                  placeholder="Enter event title"
+                />
+              </div>
+              <div class="mb-3">
+                <label for="eventDate"  class="form-label">Event Date</label>
+                <input type="date" formControlName="date" class="form-control" id="eventDate" />
+              </div>
+              <div class="mb-3">
+                <label for="location" class="form-label"
+                  >Image URLs (comma-separated)</label
+                >
+                <input
+                  type="text"
+                  formControlName="imagesUrl"
+                  class="form-control"
+                  id="images"
+                  placeholder="Enter image URLs"
+                />
+              </div>
+            </div>
+          </div>
+        </form>
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button
+            (click)="onSubmit()"
+            type="button"
+            class="btn btn-danger background btn-sm"
+            data-bs-dismiss="modal"
+            [disabled]="selectedGallery.invalid"
+          >
+            Submit
+          </button>
+          <button
+            type="button"
+            class="btn btn-danger btn-sm"
+            data-bs-dismiss="modal"
+          >
+            Close
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

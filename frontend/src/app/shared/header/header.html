@@ -1,0 +1,84 @@
+<nav class="navbar navbar-expand-sm navbar-dark background">
+  <div class="container">
+    <a class="navbar-brand" href="javascript:void(0)"
+      ><div class="row">
+        <div class="col-sm-3">
+          <img
+            class="border rounded-circle"
+            src="assets/images/logo.jpeg"
+            width="60px"
+            height="60px"
+            alt=""
+          />
+        </div>
+        <div class="col-sm-6 pt-2"><h2 class="fs-2">God Grace School</h2></div>
+      </div></a
+    >
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#mynavbar"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="mynavbar">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/admission">Admission</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/notice">Notices</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/events">Events</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/gallery">Gallery</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/teachers">Teachers</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/contact-us">Contact Us</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/about-us">About Us</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a
+            class="nav-link dropdown-toggle"
+            href="#"
+            id="moreDropdown"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            More
+          </a>
+          <ul
+            class="dropdown-menu dropdown-menu-end background"
+            aria-labelledby="moreDropdown"
+          >
+            <li>
+              <a class="dropdown-item background" routerLink="/privacy-policy" >Privacy & Policy</a>
+            </li>
+            <li><a class="dropdown-item background" routerLink="/disclaimer">Disclaimer</a></li>
+            <li><a class="dropdown-item background" routerLink="/dashboard">Dashboard</a></li>
+            @if (isLoggedIn()) {
+            <li>
+              <a class="dropdown-item background" routerLink="/dashboard" (click)="logOut()">
+                Log Out
+              </a>
+            </li>
+          }
+            <!-- Add more links as needed -->
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
