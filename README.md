@@ -47,5 +47,31 @@ cd backend
 npm install
 node server.js
 
+## Project Screenshots
 
+### Home Page
+![Home](images/home.png)
 
+### Admission Form
+![Admission form](images/admission-form.png)
+
+### Teachers
+![Teachers](images/teachers.png)
+
+### Gallery
+![Gallery](images/gallery.png)
+
+### Login
+![Login](images/login.png)
+
+### Notice Board
+![Notice](images/notice.png)
+
+###  Dashboard
+![Dashboard](images/dashboard-1.png)
+
+![Dashboard](images/dashboard-2.png)
+
+![Dashboard](images/dashboard-3.png)
+
+![Dashboard](images/dashboard-4.png)
