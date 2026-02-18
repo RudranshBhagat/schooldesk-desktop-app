@@ -47,6 +47,18 @@ cd backend
 npm install
 node server.js
 
+
+## Environment Variables
+
+Create a `.env` file in the `backend/` folder:
+```env
+PORT=3000
+MONGO_URL=mongodb://localhost:27017/your_database_name
+JWT_SECRET=your_secret_key_here
+```
+
+This way you're telling users what variables they need without exposing your real credentials. Also make sure your actual `.env` file is in `.gitignore` so it never gets pushed:
+
 ## Project Screenshots
 
 ### Home Page
